@@ -88,18 +88,33 @@ button {
   width: 100%;
 }
 
+/* --- Контрастний стиль для вибору дати --- */
 .date-picker {
-  padding: 12px 20px;
+  -webkit-appearance: none; /* Прибираємо зайві системні стилі iOS/Android */
+  appearance: none;
+  background-color: #ffffff; /* Чисто білий фон */
+  color: #000000; /* Чорний текст для ідеальної читабельності */
+  border: 2px solid #10b981; /* Зелена або синя рамка, щоб виділялося */
+  padding: 12px 16px;
   border-radius: 12px;
-  border: 2px solid #3b82f6; /* Синя рамка під стиль кнопки "Так" */
-  background-color: #ef4444; /* Трохи світліший чорний для контрасту */
-  color: rgb(0, 0, 0);
+  font-size: 16px; /* Рівно 16px дуже важливо для iPhone, щоб екран не зумився сам по собі! */
+  font-weight: 600;
+  width: 100%;
+  max-width: 260px;
+  box-sizing: border-box;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  display: block;
+  margin: 0 auto;
   font-family: inherit;
-  font-size: 1.2rem;
-  outline: none;
+}
+
+/* Робимо іконку календаря стандартною та видимою */
+.date-picker::-webkit-calendar-picker-indicator {
+  filter: none; /* Відміняємо інверсію, яку ми робили для чорного фону */
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.2);
+  opacity: 0.7;
+  width: 24px;
+  height: 24px;
 }
 
 .date-picker:focus {
@@ -107,11 +122,6 @@ button {
   box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
 }
 
-/* Робимо іконку календаря білою (бо за замовчуванням вона чорна і її не видно на темному тлі) */
-.date-picker::-webkit-calendar-picker-indicator {
-  filter: invert(1);
-  cursor: pointer;
-}
 
 .confirm-button {
   margin-top: 10px;
