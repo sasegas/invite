@@ -1,0 +1,155 @@
+/* Блокуємо горизонтальний скрол */
+#root {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+/* Чорний фон для контейнера */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #e45757; /* Глибокий чорний */
+  padding: 20px;
+  box-sizing: border-box;
+}
+.con-main{
+	  background-color: #1a1a1a; /* Темно-сірий фон для контенту */
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7); /* Глибока тінь для об'єму */
+ 
+}
+
+/* Червоний заголовок з легким світінням */
+h1 {
+  color: #ef4444; /* Яскраво-червоний */
+  margin-bottom: 2rem;
+  font-size: 2rem;
+ line-height: 1.1;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  max-width: 90vw; 
+  word-wrap: break-word; 
+  white-space: normal;
+}
+
+/* Синя кнопка "Так" */
+.yes-button {
+  background-color: #3b82f6; /* Синій */
+  color: white;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+}
+
+.yes-button:hover {
+  background-color: #2563eb; /* Більш темний синій при наведенні */
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
+}
+
+/* Червона кнопка "Ні" */
+.no-button {
+  background-color: #ef4444; /* Червоний */
+  color: white;
+  font-size: 16px;
+}
+
+.no-button:hover {
+  background-color: #dc2626; /* Більш темний червоний при наведенні */
+}
+
+
+/* --- Стилі для вибору дати --- */
+.date-selection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.date-picker {
+  padding: 12px 20px;
+  border-radius: 12px;
+  border: 2px solid #3b82f6; /* Синя рамка під стиль кнопки "Так" */
+  background-color: #ef4444; /* Трохи світліший чорний для контрасту */
+  color: rgb(0, 0, 0);
+  font-family: inherit;
+  font-size: 1.2rem;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.2);
+}
+
+.date-picker:focus {
+  border-color: #ef4444; /* При натисканні рамка стає червоною */
+  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+}
+
+/* Робимо іконку календаря білою (бо за замовчуванням вона чорна і її не видно на темному тлі) */
+.date-picker::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  cursor: pointer;
+}
+
+.confirm-button {
+  margin-top: 10px;
+  animation: fadeIn 0.5s ease-in; /* Плавна поява кнопки */
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Стилі для вибору активності --- */
+.activities-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.activity-button {
+  background-color: #1a1a1a; /* Темний фон, як у поля вводу дати */
+  color: white;
+  border: 1px solid #ffffff ;
+  padding: 12px 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  font-size: 1rem;
+}
+
+.activity-button:hover {
+  background-color: #2a2a2a;
+}
+
+/* Стиль для активної (натиснутої) кнопки */
+.activity-button.selected {
+  border-color: #3b82f6;
+  background-color: #3b82f6;
+
+  transform: scale(1.02); /* Легке збільшення при виборі */
+}
