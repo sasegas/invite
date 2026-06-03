@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import './App.css';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const noPhrases = [
 	"Ні",
@@ -24,9 +26,6 @@ function App() {
 	const [noCount, setNoCount] = useState(0);
 	const [accepted, setAccepted] = useState(false);
 
-	const [meetingDateTime, setMeetingDateTime] = useState('');
-	const [dateConfirmed, setDateConfirmed] = useState(false);
-
 	// Нові стани для вибору активності
 	const [activity, setActivity] = useState('');
 	const [activityConfirmed, setActivityConfirmed] = useState(false);
@@ -46,21 +45,16 @@ function App() {
 		return noPhrases[Math.min(noCount, noPhrases.length - 1)];
 	};
 
-	const getMinDateTime = () => {
-		const now = new Date();
-		const tzOffset = now.getTimezoneOffset() * 60000;
-		return new Date(now.getTime() - tzOffset).toISOString().slice(0, 16);
-	};
+	const [meetingDate, setMeetingDate] = useState<Date | null>(null);
+	const [dateConfirmed, setDateConfirmed] = useState(false);
 
-	const formatDateTime = (dateTimeStr: string) => {
-		if (!dateTimeStr) return '';
-		const dateObj = new Date(dateTimeStr);
-
-		const day = String(dateObj.getDate()).padStart(2, '0');
-		const month = String(dateObj.getMonth() + 1).padStart(2, '0');
-		const year = dateObj.getFullYear();
-		const hours = String(dateObj.getHours()).padStart(2, '0');
-		const minutes = String(dateObj.getMinutes()).padStart(2, '0');
+	const formatDateTime = (date: Date | null) => {
+		if (!date) return '';
+		const day = String(date.getDate()).padStart(2, '0');
+		const month = String(date.getMonth() + 1).padStart(2, '0');
+		const year = date.getFullYear();
+		const hours = String(date.getHours()).padStart(2, '0');
+		const minutes = String(date.getMinutes()).padStart(2, '0');
 
 		return `${day}.${month}.${year} о ${hours}:${minutes}`;
 	};
@@ -75,7 +69,7 @@ function App() {
 			return;
 		}
 
-		const message = `🎉 Вона сказала ТАК!\n\n📅 Дата та час: ${formatDateTime(meetingDateTime)}\n🎯 Що будемо робити: ${activity}`;
+		const message = `🎉 Вона сказала ТАК!\n\n📅 Дата та час: ${formatDateTime(meetingDate)}\n🎯 Що будемо робити: ${activity}`;
 		const url = `https://api.telegram.org/bot${token}/sendMessage`;
 
 		try {
@@ -129,7 +123,7 @@ function App() {
 		return (
 			<div className="container">
 				<div className="con-main">
-					<h1>Ура! До зустрічі {formatDateTime(meetingDateTime)}!</h1>
+					<h1>Ура! До зустрічі {formatDateTime(meetingDate)}!</h1>
 					<p style={{ color: 'white', fontSize: '1.2rem', marginTop: '10px' }}>
 						План: <span style={{ color: '#3b82f6', fontWeight: 'bold' }}>{activity}</span>
 					</p>
@@ -175,14 +169,18 @@ function App() {
 				<div className="con-main">
 					<h1>Коли тобі було б зручно зустрітись?</h1>
 					<div className="date-selection">
-						<input
-							type="datetime-local"
-							className="date-picker"
-							value={meetingDateTime}
-							onChange={(e) => setMeetingDateTime(e.target.value)}
-							min={getMinDateTime()}
+						<DatePicker
+							selected={meetingDate}
+							onChange={(date: Date | null) => setMeetingDate(date)}
+							showTimeSelect
+							timeFormat="HH:mm"
+							timeIntervals={15}
+							timeCaption="Час"
+							dateFormat="dd.MM.yyyy HH:mm"
+							inline // Робить календар завжди відкритим
+							minDate={new Date()} // Заборона минулих дат
 						/>
-						{meetingDateTime && (
+						{meetingDate && (
 							<button
 								className="yes-button confirm-button"
 								onClick={() => setDateConfirmed(true)}
@@ -195,7 +193,6 @@ function App() {
 			</div>
 		);
 	}
-
 	// 1. Головний екран запрошення
 	return (
 		<div className="container">

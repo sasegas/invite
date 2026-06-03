@@ -103,38 +103,121 @@ button {
   width: 100%;
 }
 
-/* --- Контрастний стиль для вибору дати --- */
-.date-picker {
-  -webkit-appearance: none; 
-  appearance: none;
-  background-color: #ffffff; 
-  color: #000000; 
-  border: 3px solid #10b981; 
-  padding: 15px 16px; /* Зробив інпут трохи вищим, щоб було зручніше тиснути */
-  border-radius: 12px;
-  font-size: 16px; 
-  font-weight: 600;
-  width: 100%;
-  max-width: 280px;
-  box-sizing: border-box;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  display: block;
-  margin: 0 auto;
-  font-family: inherit;
+/* =========================================
+   АДАПТИВНИЙ ДИЗАЙН КАЛЕНДАРЯ (DARK THEME)
+   ========================================= */
+
+.react-datepicker {
+  display: flex !important;
+  flex-direction: row !important; /* Дата зліва, час справа */
+  width: 100% !important; /* Розтягується на всю ширину картки */
+  background-color: #1a1a1a !important;
+  border: 2px solid #3b82f6 !important; /* Синя рамка */
+  border-radius: 12px !important;
+  overflow: hidden; /* Обрізає зайве, щоб кути були круглі */
+  font-family: inherit !important;
+  font-size: 1rem !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
 }
 
-.date-picker::-webkit-calendar-picker-indicator {
-  filter: none; 
-  cursor: pointer;
-  opacity: 0.7;
-  width: 24px;
-  height: 24px;
+/* --- Секція Місяця і Днів --- */
+.react-datepicker__month-container {
+  flex: 1 !important; /* Забирає весь вільний простір по ширині */
+  float: none !important;
+  width: auto !important;
 }
 
-.date-picker:focus {
-  border-color: #ef4444; 
-  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
-  outline: none;
+.react-datepicker__header {
+  background-color: #2a2a2a !important;
+  border-bottom: 1px solid #444 !important;
+  padding-top: 12px !important;
+}
+
+/* Вирівнюємо назви днів та самі числа по ширині */
+.react-datepicker__day-names,
+.react-datepicker__week {
+  display: flex !important;
+  justify-content: space-around !important;
+  width: 100% !important;
+}
+
+.react-datepicker__day-name,
+.react-datepicker__day {
+  flex: 1 !important; /* Кожна цифра забирає рівну частину ширини */
+  width: auto !important;
+  line-height: 2.2rem !important;
+  margin: 0.1rem !important;
+  color: #ffffff !important;
+}
+
+.react-datepicker__day-name {
+  color: #aaaaaa !important; /* Сірий колір для Пн, Вт... */
+  font-weight: bold;
+}
+
+/* --- Секція Часу --- */
+.react-datepicker__time-container {
+  width: 95px !important; /* Час завжди має фіксовану ширину */
+  float: none !important;
+  border-left: 1px solid #444 !important;
+}
+
+.react-datepicker__time {
+  background-color: #1a1a1a !important;
+}
+
+.react-datepicker__time-box {
+  width: 100% !important;
+}
+
+.react-datepicker__time-list {
+  padding: 0 !important;
+  max-height: 260px !important; /* Обмежуємо висоту, щоб відповідав висоті дат */
+}
+
+/* --- Кольори і ефекти наведення --- */
+.react-datepicker__current-month, 
+.react-datepicker-time__header, 
+.react-datepicker-year-header {
+  color: #ffffff !important;
+}
+
+.react-datepicker__day:hover,
+.react-datepicker__time-list-item:hover {
+  background-color: #3b82f6 !important; /* Синє підсвічування */
+  border-radius: 8px !important; /* Квадратніші кнопки замість круглих */
+}
+
+.react-datepicker__day--selected, 
+.react-datepicker__day--keyboard-selected,
+.react-datepicker__time-list-item--selected {
+  background-color: #ef4444 !important; /* Червоний колір для вибраного */
+  color: #ffffff !important;
+  border-radius: 8px !important;
+  font-weight: bold;
+}
+
+.react-datepicker__time-list-item {
+  color: #ffffff !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 40px !important;
+}
+
+/* --- Мобільна Адаптація (для дуже вузьких екранів) --- */
+@media (max-width: 360px) {
+  .react-datepicker {
+    flex-direction: column !important; /* Ставимо час ПІД датами */
+  }
+  .react-datepicker__time-container {
+    width: 100% !important;
+    border-left: none !important;
+    border-top: 1px solid #444 !important;
+  }
+  .react-datepicker__time-list {
+    max-height: 140px !important; /* Робимо блок часу нижчим для зручного скролу */
+  }
 }
 
 .confirm-button {
