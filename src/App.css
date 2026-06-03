@@ -6,7 +6,7 @@
   overflow-x: hidden;
 }
 
-/* Чорний фон для контейнера */
+/* Фон для контейнера */
 .container {
   display: flex;
   flex-direction: column;
@@ -14,24 +14,40 @@
   justify-content: center;
   min-height: 100vh;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #e45757; /* Глибокий чорний */
+  background-color: #e45757; /* Твій червоний колір фону */
   padding: 20px;
   box-sizing: border-box;
 }
-.con-main{
-	  background-color: #1a1a1a; /* Темно-сірий фон для контенту */
-  padding: 30px;
+
+/* Головна темна картка (АДАПТИВНА) */
+.con-main {
+  background-color: #1a1a1a; /* Темно-сірий фон для контенту */
+  padding: 40px 20px; /* Збільшені відступи для масивності */
   border-radius: 20px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7); /* Глибока тінь для об'єму */
- 
+  
+  /* Саме ці три рядки роблять магію на телефоні */
+  width: 90vw; 
+  max-width: 400px; 
+  box-sizing: border-box;
+  margin: 0 auto;
 }
 
-/* Червоний заголовок з легким світінням */
+/* Заголовок всередині картки */
 h1 {
   color: #ef4444; /* Яскраво-червоний */
   margin-bottom: 2rem;
-  font-size: 2rem;
- line-height: 1.1;
+  font-size: 1.8rem; /* Трохи зменшив, щоб гарно влазило на екрані */
+  line-height: 1.2;
+}
+
+/* Картинки (ведмедики) */
+img {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  margin-bottom: 20px;
+  border-radius: 15px;
 }
 
 .buttons {
@@ -57,27 +73,26 @@ button {
 
 /* Синя кнопка "Так" */
 .yes-button {
-  background-color: #3b82f6; /* Синій */
+  background-color: #3b82f6;
   color: white;
   box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
 }
 
 .yes-button:hover {
-  background-color: #2563eb; /* Більш темний синій при наведенні */
+  background-color: #2563eb;
   box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
 }
 
 /* Червона кнопка "Ні" */
 .no-button {
-  background-color: #ef4444; /* Червоний */
+  background-color: #ef4444;
   color: white;
   font-size: 16px;
 }
 
 .no-button:hover {
-  background-color: #dc2626; /* Більш темний червоний при наведенні */
+  background-color: #dc2626;
 }
-
 
 /* --- Стилі для вибору дати --- */
 .date-selection {
@@ -90,17 +105,17 @@ button {
 
 /* --- Контрастний стиль для вибору дати --- */
 .date-picker {
-  -webkit-appearance: none; /* Прибираємо зайві системні стилі iOS/Android */
+  -webkit-appearance: none; 
   appearance: none;
-  background-color: #ffffff; /* Чисто білий фон */
-  color: #000000; /* Чорний текст для ідеальної читабельності */
-  border: 2px solid #10b981; /* Зелена або синя рамка, щоб виділялося */
-  padding: 12px 16px;
+  background-color: #ffffff; 
+  color: #000000; 
+  border: 3px solid #10b981; 
+  padding: 15px 16px; /* Зробив інпут трохи вищим, щоб було зручніше тиснути */
   border-radius: 12px;
-  font-size: 16px; /* Рівно 16px дуже важливо для iPhone, щоб екран не зумився сам по собі! */
+  font-size: 16px; 
   font-weight: 600;
   width: 100%;
-  max-width: 260px;
+  max-width: 280px;
   box-sizing: border-box;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   display: block;
@@ -108,9 +123,8 @@ button {
   font-family: inherit;
 }
 
-/* Робимо іконку календаря стандартною та видимою */
 .date-picker::-webkit-calendar-picker-indicator {
-  filter: none; /* Відміняємо інверсію, яку ми робили для чорного фону */
+  filter: none; 
   cursor: pointer;
   opacity: 0.7;
   width: 24px;
@@ -118,14 +132,14 @@ button {
 }
 
 .date-picker:focus {
-  border-color: #ef4444; /* При натисканні рамка стає червоною */
+  border-color: #ef4444; 
   box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+  outline: none;
 }
-
 
 .confirm-button {
   margin-top: 10px;
-  animation: fadeIn 0.5s ease-in; /* Плавна поява кнопки */
+  animation: fadeIn 0.5s ease-in; 
 }
 
 @keyframes fadeIn {
@@ -144,7 +158,7 @@ button {
 }
 
 .activity-button {
-  background-color: #1a1a1a; /* Темний фон, як у поля вводу дати */
+  background-color: #1a1a1a; 
   color: white;
   border: 1px solid #ffffff ;
   padding: 12px 20px;
@@ -156,10 +170,8 @@ button {
   background-color: #2a2a2a;
 }
 
-/* Стиль для активної (натиснутої) кнопки */
 .activity-button.selected {
   border-color: #3b82f6;
   background-color: #3b82f6;
-
-  transform: scale(1.02); /* Легке збільшення при виборі */
+  transform: scale(1.02); 
 }
