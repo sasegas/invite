@@ -1,4 +1,4 @@
-/* Блокуємо горизонтальний скрол */
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap');
 #root {
   width: 100%;
   margin: 0 auto;
@@ -14,18 +14,19 @@
   justify-content: center;
   min-height: 100vh;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #e45757; /* Твій червоний колір фону */
+  background-color: #f77878; /* Твій червоний колір фону */
   padding: 20px;
   box-sizing: border-box;
 }
 
 /* Головна темна картка (АДАПТИВНА) */
 .con-main {
-  background-color: #1a1a1a; /* Темно-сірий фон для контенту */
+  background-color: #f0ebeb; /* Темно-сірий фон для контенту */
   padding: 40px 20px; /* Збільшені відступи для масивності */
   border-radius: 20px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7); /* Глибока тінь для об'єму */
-  
+  border: 4px solid #db3838; 
+  box-shadow: 0 8px 0px rgba(0, 0, 0, 0.3); /* Глибока тінь для об'єму */
+  z-index: 1;
   /* Саме ці три рядки роблять магію на телефоні */
   width: 90vw; 
   max-width: 400px; 
@@ -35,19 +36,24 @@
 
 /* Заголовок всередині картки */
 h1 {
-  color: #ef4444; /* Яскраво-червоний */
+  color: #db3838; /* Яскраво-червоний */
   margin-bottom: 2rem;
-  font-size: 1.8rem; /* Трохи зменшив, щоб гарно влазило на екрані */
   line-height: 1.2;
+  font-size: 1.8rem; /* Трохи зменшив, щоб гарно влазило на екрані */
+  font-weight: bold;
+  font-family: 'Comfortaa', cursive; /* Піксельний шрифт для ретро-стилю */
 }
+p{
+	font-weight: bold ;
+	font-size: 20px;
+	color:#ff2121;
 
-/* Картинки (ведмедики) */
-img {
-  width: 250px;
-  height: 250px;
-  object-fit: cover;
-  margin-bottom: 20px;
-  border-radius: 15px;
+}
+span {
+	font-size: 22px;
+	color: #9060ff;
+	text-shadow: 1px 1.5px 0px #000000; /* Легке світіння для виділення */
+	
 }
 
 .buttons {
@@ -60,34 +66,35 @@ img {
 }
 
 button {
-  padding: 12px 24px;
+  padding: 12px 32px;
   border: none;
-  border-radius: 12px;
+  border-radius: 50px;
   cursor: pointer;
   font-weight: bold;
   transition: all 0.3s ease;
   max-width: 90vw; 
   word-wrap: break-word; 
   white-space: normal;
+   box-shadow: 0 3px 0px rgba(0, 0, 0, 0.3); /* Глибока тінь для об'єму */
 }
 
 /* Синя кнопка "Так" */
 .yes-button {
-  background-color: #3b82f6;
+  background: linear-gradient(0deg, #ff2121, #ff7171);
   color: white;
-  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+     box-shadow: 0 3px 0px rgba(0, 0, 0, 0.3); /* Глибока тінь для об'єму */
 }
 
 .yes-button:hover {
-  background-color: #2563eb;
-  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
+ padding: 14px 36px;
 }
 
 /* Червона кнопка "Ні" */
 .no-button {
-  background-color: #ef4444;
+  background: linear-gradient(0deg, #ff2121, #ff7171);
   color: white;
   font-size: 16px;
+
 }
 
 .no-button:hover {
@@ -102,6 +109,7 @@ button {
   gap: 20px;
   width: 100%;
 }
+
 
 /* =========================================
    АДАПТИВНИЙ ДИЗАЙН КАЛЕНДАРЯ (DARK THEME)
@@ -157,7 +165,7 @@ button {
 
 /* --- Секція Часу --- */
 .react-datepicker__time-container {
-  width: 95px !important; /* Час завжди має фіксовану ширину */
+  width: 75px !important; /* Час завжди має фіксовану ширину */
   float: none !important;
   border-left: 1px solid #444 !important;
 }
@@ -185,13 +193,14 @@ button {
 .react-datepicker__day:hover,
 .react-datepicker__time-list-item:hover {
   background-color: #3b82f6 !important; /* Синє підсвічування */
+    background: linear-gradient(0deg, #6421ff, #8671ff);
   border-radius: 8px !important; /* Квадратніші кнопки замість круглих */
 }
 
 .react-datepicker__day--selected, 
 .react-datepicker__day--keyboard-selected,
 .react-datepicker__time-list-item--selected {
-  background-color: #ef4444 !important; /* Червоний колір для вибраного */
+   background: linear-gradient(0deg, #ff2121, #ff7171);
   color: #ffffff !important;
   border-radius: 8px !important;
   font-weight: bold;
@@ -241,7 +250,7 @@ button {
 }
 
 .activity-button {
-  background-color: #1a1a1a; 
+  background: linear-gradient(0deg, #1a1a1a, #1a1a1a);
   color: white;
   border: 1px solid #ffffff ;
   padding: 12px 20px;
@@ -250,11 +259,11 @@ button {
 }
 
 .activity-button:hover {
-  background-color: #2a2a2a;
+	 background: linear-gradient(0deg,  #2a2a2a,  #2a2a2a);
 }
 
 .activity-button.selected {
-  border-color: #3b82f6;
-  background-color: #3b82f6;
-  transform: scale(1.02); 
+  border-color: #630606;
+ background: linear-gradient(0deg, #ff2121, #ff7171);
+  transform: scale(1.05); 
 }
