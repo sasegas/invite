@@ -120,7 +120,7 @@ button {
   flex-direction: row !important; /* Дата зліва, час справа */
   width: 100% !important; /* Розтягується на всю ширину картки */
   background-color: #1a1a1a !important;
-  border: 2px solid #3b82f6 !important; /* Синя рамка */
+  border: 2px solid #9060ff !important; /* Синя рамка */
   border-radius: 12px !important;
   overflow: hidden; /* Обрізає зайве, щоб кути були круглі */
   font-family: inherit !important;
@@ -192,7 +192,6 @@ button {
 
 .react-datepicker__day:hover,
 .react-datepicker__time-list-item:hover {
-  background-color: #3b82f6 !important; /* Синє підсвічування */
     background: linear-gradient(0deg, #6421ff, #8671ff);
   border-radius: 8px !important; /* Квадратніші кнопки замість круглих */
 }
