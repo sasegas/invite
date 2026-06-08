@@ -1,9 +1,13 @@
 import { useState } from 'react';
-import './App.css';
+import './App.scss';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { motion, AnimatePresence, type Variants } from 'framer-motion';
 import { EmojiBackground } from './EmojiBackground';
+import confetti from 'canvas-confetti';
+
+
+
 
 const noPhrases = [
 	"Ні",
@@ -48,14 +52,26 @@ export function App() {
 
 	const yesButtonSize = noCount * 20 + 16;
 
+	const playSound = (soundPath: string) => {
+		const audio = new Audio(soundPath);
+		audio.volume = 0.5; // Гучність від 0.0 до 1.0 (зараз 50%)
+		audio.play().catch((e) => console.log("Браузер заблокував автоплей до першої взаємодії:", e));
+	};
+
 	const handleNoClick = () => {
 		setNoCount(noCount + 1);
-		sendNotificationNo('no');
+		playSound('./sounds/sad.mp3');
+		const currentNoText = noPhrases[Math.min(noCount + 1, noPhrases.length - 1)];
+		const message = `Вона натиснула ні ${noCount + 1} разів. Текст: "${currentNoText}"`;
+		sendTelegramMessage(message);
+
 	};
 
 	const handleYesClick = () => {
 		setAccepted(true);
-		sendNotificationNo('yes');
+		playSound('./sounds/happy.mp3');
+		sendTelegramMessage(`Вона натиснула так!`);
+		confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 } });
 	};
 
 	const getNoButtonText = () => {
@@ -72,28 +88,12 @@ export function App() {
 		return `${day}.${month}.${year} о ${hours}:${minutes}`;
 	};
 
-	const sendNotification = async () => {
+
+	const sendTelegramMessage = async (message: string) => {
 		const token = import.meta.env.VITE_TG_BOT_TOKEN;
 		const chatId = import.meta.env.VITE_TG_CHAT_ID;
 		if (!token || !chatId) return;
 
-		const message = `🎉 Вона сказала ТАК!\n\n📅 Дата та час: ${formatDateTime(meetingDate)}\n🎯 Що будемо робити: ${activity}`;
-		try {
-			await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({ chat_id: chatId, text: message }),
-			});
-		} catch (e) { console.error(e); }
-	};
-
-	const sendNotificationNo = async (type: string) => {
-		const token = import.meta.env.VITE_TG_BOT_TOKEN;
-		const chatId = import.meta.env.VITE_TG_CHAT_ID;
-		if (!token || !chatId) return;
-
-		const currentNoText = noPhrases[Math.min(noCount + 1, noPhrases.length - 1)];
-		const message = type === 'no' ? `Вона натиснула ні ${noCount + 1} разів. Текст: "${currentNoText}"` : `Вона натиснула так!`;
 		try {
 			await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
 				method: 'POST',
@@ -153,7 +153,9 @@ export function App() {
 								className="yes-button confirm-button"
 								onClick={() => {
 									setActivityConfirmed(true);
-									sendNotification();
+									sendTelegramMessage(`🎉 Вона сказала ТАК!\n\n📅 Дата та час: ${formatDateTime(meetingDate)}\n🎯 Що будемо робити: ${activity}`);
+									confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 } });
+									playSound('./sounds/victory.mp3');
 								}}
 								style={{ marginTop: '20px' }}
 							>
@@ -189,7 +191,10 @@ export function App() {
 							{meetingDate && (
 								<button
 									className="yes-button confirm-button"
-									onClick={() => setDateConfirmed(true)}
+									onClick={() => {
+										setDateConfirmed(true);
+										playSound('./sounds/happy.mp3');
+									}}
 								>
 									Далі
 								</button>
