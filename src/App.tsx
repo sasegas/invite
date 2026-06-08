@@ -147,6 +147,14 @@ export function App() {
 									{act}
 								</button>
 							))}
+							<input
+								type="text"
+								placeholder="Твоя ідея"
+								className="choice-input"
+								value={activitiesList.includes(activity) ? '' : activity}
+								onChange={(e) => setActivity(e.target.value)}
+								onClick={() => playSound('./sounds/click.mp3')}
+							/>
 						</div>
 						{activity && (
 							<button

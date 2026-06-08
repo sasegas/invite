@@ -58,6 +58,7 @@ span {
 	color: #9060ff;
 	text-shadow: 1px 1.5px 0px #000000; /* Легке світіння для виділення */
 }
+
 .buttons {
 	display: flex;
 	align-items: center;
@@ -271,6 +272,16 @@ button {
 	width: 100%;
 	max-width: 320px;
 	margin: 0 auto;
+}
+.choice-input {
+	padding: 12px 20px;
+	border: none;
+	border-radius: 50px;
+	background: linear-gradient(0deg, #2a2a2a, #2a2a2a);
+	box-shadow: 0 3px 0px rgba(0, 0, 0, 0.3); /* Глибока тінь для об'єму */
+	font-size: 1rem;
+	font-weight: bold;
+	max-width: 320px;
 }
 
 .activity-button {
