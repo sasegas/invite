@@ -142,7 +142,7 @@ export function App() {
 								<button
 									key={index}
 									className={`activity-button ${activity === act ? 'selected' : ''}`}
-									onClick={() => setActivity(act)}
+									onClick={() => { setActivity(act); playSound('./sounds/click.mp3'); }}
 								>
 									{act}
 								</button>
