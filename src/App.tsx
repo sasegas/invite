@@ -179,7 +179,7 @@ export function App() {
 						<div className="date-selection">
 							<DatePicker
 								selected={meetingDate}
-								onChange={(date: Date | null) => setMeetingDate(date)}
+								onChange={(date: Date | null) => { setMeetingDate(date); playSound('./sounds/click.mp3'); }}
 								showTimeSelect
 								timeFormat="HH:mm"
 								timeIntervals={15}
