@@ -1,4 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap");
+
+$main-color: #b357e6;
+$primary-color: #7c26bd;
+$no-hover: #7919b5;
+$bg-gradient: linear-gradient(0deg, #9314db, #be4ced);
+$p-color: #9314db;
+$span-color: #763ded;
+$perple-gradient: linear-gradient(0deg, #9060ff, #c9a0ff);
+$text-shadow: 1px 1.5px 0px #000000;
 #root {
 	width: 100%;
 	margin: 0 auto;
@@ -14,7 +23,7 @@
 	justify-content: center;
 	min-height: 100vh;
 	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-	background-color: #f77878; /* Твій червоний колір фону */
+	background-color: $main-color; /* Твій червоний колір фону */
 	padding: 20px;
 	box-sizing: border-box;
 }
@@ -24,7 +33,7 @@
 	background-color: #f0ebeb; /* Темно-сірий фон для контенту */
 	padding: 40px 20px; /* Збільшені відступи для масивності */
 	border-radius: 20px;
-	border: 4px solid #db3838;
+	border: 4px solid $primary-color;
 	box-shadow: 0 8px 0px rgba(0, 0, 0, 0.3); /* Глибока тінь для об'єму */
 	z-index: 1;
 	/* Саме ці три рядки роблять магію на телефоні */
@@ -36,7 +45,7 @@
 
 /* Заголовок всередині картки */
 h1 {
-	color: #db3838; /* Яскраво-червоний */
+	color: $primary-color; /* Яскраво-червоний */
 	margin-bottom: 2rem;
 	line-height: 1.2;
 	font-size: 1.8rem; /* Трохи зменшив, щоб гарно влазило на екрані */
@@ -46,17 +55,17 @@ h1 {
 p {
 	font-weight: bold;
 	font-size: 20px;
-	color: #ff2121;
+	color: $p-color;
 	span {
 		font-size: 22px;
-		color: #9060ff;
-		text-shadow: 1px 1.5px 0px #000000; /* Легке світіння для виділення */
+		color: $span-color;
+		text-shadow: $text-shadow;
 	}
 }
 span {
 	font-size: 18px;
-	color: #9060ff;
-	text-shadow: 1px 1.5px 0px #000000; /* Легке світіння для виділення */
+	color: $span-color;
+	text-shadow: $text-shadow;
 }
 
 .buttons {
@@ -83,7 +92,7 @@ button {
 
 /* Синя кнопка "Так" */
 .yes-button {
-	background: linear-gradient(0deg, #ff2121, #ff7171);
+	background: $bg-gradient;
 	color: white;
 	box-shadow: 0 3px 0px rgba(0, 0, 0, 0.3); /* Глибока тінь для об'єму */
 }
@@ -94,13 +103,13 @@ button {
 
 /* Червона кнопка "Ні" */
 .no-button {
-	background: linear-gradient(0deg, #ff2121, #ff7171);
+	background: $bg-gradient;
 	color: white;
 	font-size: 16px;
 }
 
 .no-button:hover {
-	background-color: #dc2626;
+	background-color: $no-hover;
 }
 
 /* --- Стилі для вибору дати --- */
@@ -120,7 +129,7 @@ button {
 	flex-direction: row !important; /* Дата зліва, час справа */
 	width: 100% !important; /* Розтягується на всю ширину картки */
 	background-color: #ffffff !important; /* Світлий фон */
-	border: 2px solid #9060ff !important; /* Синя/фіолетова рамка */
+	border: 2px solid $span-color !important; /* Синя/фіолетова рамка */
 	border-radius: 12px !important;
 	overflow: hidden; /* Обрізає зайве, щоб кути були круглі */
 	font-family: inherit !important;
@@ -194,7 +203,7 @@ button {
 .react-datepicker__day--selected,
 .react-datepicker__day--keyboard-selected,
 .react-datepicker__time-list-item--selected {
-	background: linear-gradient(180deg, #af97ff, #6016ff) !important;
+	background: $perple-gradient !important;
 	color: #ffffff !important;
 	border-radius: 8px !important;
 	font-weight: bold;
@@ -225,7 +234,7 @@ button {
 }
 
 .react-datepicker__time-list::-webkit-scrollbar-thumb:hover {
-	background: #9060ff !important; /* При наведенні повзунок стає фіолетовим під колір рамки */
+	background: $span-color !important; /* При наведенні повзунок стає фіолетовим під колір рамки */
 }
 
 /* Підтримка для Firefox */
@@ -300,6 +309,6 @@ button {
 
 .activity-button.selected {
 	border-color: #630606;
-	background: linear-gradient(0deg, #ff2121, #ff7171);
+	background: $bg-gradient;
 	transform: scale(1.05);
 }

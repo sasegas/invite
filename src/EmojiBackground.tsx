@@ -4,7 +4,8 @@ import { useEffect, useRef } from 'react';
 const ASSET_URLS = {
 	thinking: 'https://fonts.gstatic.com/s/e/notoemoji/latest/1f914/512.webp', // 🤔
 	eyebrow: 'https://fonts.gstatic.com/s/e/notoemoji/latest/1f928/512.webp',  // 🤨
-	lightning: 'https://fonts.gstatic.com/s/e/notoemoji/latest/26a1/512.webp'   // ⚡
+	lightning: 'https://fonts.gstatic.com/s/e/notoemoji/latest/26a1/512.webp',   // ⚡
+	heart: 'https://fonts.gstatic.com/s/e/notoemoji/latest/1f5a4/512.webp',
 };
 
 interface BackgroundParticle {
@@ -17,7 +18,7 @@ interface BackgroundParticle {
 	opacity: number;
 	rotation: number;
 	rotationSpeed: number;
-	type: 'emoji' | 'star' | 'lightning'; // Розділяємо типи для різних ефектів
+	type: 'emoji' | 'lightning' | 'heart'; // Розділяємо типи для різних ефектів
 	twinkleSpeed?: number;                // Для мерехтіння зірок/блискавок
 }
 
@@ -38,7 +39,7 @@ export function EmojiBackground() {
 		const imgThinking = new Image(); imgThinking.src = ASSET_URLS.thinking;
 		const imgEyebrow = new Image(); imgEyebrow.src = ASSET_URLS.eyebrow;
 		const imgLightning = new Image(); imgLightning.src = ASSET_URLS.lightning;
-
+		const imgHeart = new Image(); imgHeart.src = ASSET_URLS.heart;
 		const emojis = [imgThinking, imgEyebrow];
 
 		// Підганяємо розмір під екран
@@ -53,7 +54,7 @@ export function EmojiBackground() {
 		const totalParticles = 35;
 		for (let i = 0; i < totalParticles; i++) {
 			let img: HTMLImageElement;
-			let type: 'emoji' | 'star' | 'lightning';
+			let type: 'emoji' | 'star' | 'lightning' | 'heart';
 			let size: number;
 
 			const rand = Math.random();
@@ -63,11 +64,15 @@ export function EmojiBackground() {
 				img = emojis[Math.floor(Math.random() * emojis.length)];
 				type = 'emoji';
 				size = Math.random() * 25 + 25; // 45px - 70px
-			} else {
+			} else if (rand < 0.75) {
 				// 25% шансу — блискавки (⚡)
 				img = imgLightning;
 				type = 'lightning';
 				size = Math.random() * 20 + 20; // 30px - 50px
+			} else {
+				img = imgHeart;
+				type = 'heart';
+				size = Math.random() * 25 + 25; // 45px - 70px
 			}
 
 			particles.push({
